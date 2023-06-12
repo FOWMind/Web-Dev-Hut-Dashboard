@@ -1,5 +1,5 @@
-"use client"
+'use client'
 
-export default function SideBar(){
-    return <div></div>
+export default function SideBar() {
+	return <div></div>
 }
