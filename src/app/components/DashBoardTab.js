@@ -1,10 +1,10 @@
 import { MdDashboard } from 'react-icons/md'
 
-export default function DashBoardTab() {
+export function DashboardTab() {
 	return (
 		<div className="flex flex-row items-center">
-			<MdDashboard size={50} />
-			<span className="pl-2 pr-2">Dashboard</span>
+			<MdDashboard size={30} />
+			<span className="ml-2 text-2xl text-black font-semibold">Dashboard</span>
 		</div>
 	)
 }
