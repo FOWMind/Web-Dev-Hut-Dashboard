@@ -1,47 +1,37 @@
-import Button from "../components/Button"
-import Card from "../components/Card"
-import DashBoardTab from "../components/DashBoardTab"
-import ProfileCard from "../components/ProfileCard"
-import {MdAdd,MdBook,MdComputer,MdPeopleAlt,MdBookOnline} from "react-icons/md"
+import { LuSearch } from 'react-icons/lu'
 
-export default function DashboardPage(){
-    return <div class="m-10 container justify-center mx-auto min-h-screen min-w-screen bg-background-white rounded-2xl items-center p-0">
-            <div class="grid grid-cols-5 divide-x-2 min-h-screen min-w-full ">
-                <div class="col-span-1 p-5 ">
-                    <div class="grid grid-rows-5 items-center">
+import { Headline, Sidebar, Card } from '../components'
 
-                    <div class="row-span-1 text-2xl">
-                        <DashBoardTab/>
-                    </div>
-                    
-                    <div class="row-span-1">
-                        <ProfileCard/>
-                    </div>
+export function DashboardPage() {
+	return (
+		<div className="min-h-screen">
+			<div className="flex justify-start items-start">
+				<Sidebar />
 
-                    <div class="row-span-3 text-lg">
-                    <Button icon={<MdAdd size={30}/>} label="Agregar Curso Nuevo"/>
-                    <Button icon={<MdBook size={30}/>}  rounded={false} label={"Cursos"}/>
-                    <Button icon={<MdBookOnline size={30}/>}  rounded={false} label={"Classes"}/>
-                    <Button icon={<MdComputer size={30}/>}  rounded={false} label={"Technologias"}/>
-                    <Button icon={<MdPeopleAlt size={30}/>}  rounded={false} label={"Usarios"}/>
-                    </div>
-                    </div>
-
-                </div>
-                <div class="col-span-4 divide-y-2">
-                    <div class="p-5">
-                        <h1 class="text-4xl">Cursos</h1>
-                    </div>
-                    <div class="text-lg">
-                        <input class="min-w-full min-h-full p-5" type="text" id="search" placeholder="Buscar"></input>
-                    </div>
-                    <div class="p-5 grid grid-cols-3 grid-flow-col gap-4">
-                        <Card/>
-                        <Card/>
-                        <Card/>
-                    </div>
-                </div>
-                    
-            </div>
-        </div>
+				<div className="w-[75%]">
+					<Headline className="pt-10 px-10 mb-5">Cursos</Headline>
+					<div className="w-full h-16 border-y-2 border-y-grey flex items-center justify-start relative">
+						<label htmlFor="content-search">
+							<LuSearch
+								size={24}
+								className="text-hard-grey absolute top-2/4 left-10 -translate-y-2/4 cursor-text"
+							/>
+						</label>
+						<input
+							className="w-full h-full bg-transparent pl-[70px] pr-10 text-md placeholder:text-hard-grey text-black outline-none"
+							type="text"
+							autoComplete="off"
+							placeholder="Busca algo"
+							id="content-search"
+						/>
+					</div>
+					<div className="p-10 grid grid-cols-3 grid-flow-col gap-4">
+						<Card />
+						<Card />
+						<Card />
+					</div>
+				</div>
+			</div>
+		</div>
+	)
 }

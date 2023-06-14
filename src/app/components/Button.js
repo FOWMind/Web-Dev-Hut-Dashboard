@@ -1,21 +1,20 @@
+export function Button({ featured = false, label, icon, className = '' }) {
+	const Icon = icon
 
-import {MdAdd} from "react-icons/md"
-export default function button({rounded=true, label, icon=null}){
-    return rounded?
-    <button class="pr-5 pl-5 pt-3 pb-3 bg-green rounded-lg text-lg min-w-full">
-        <div class="flex flex-row items-center">
-            {icon}
-            <span class="pl-2 pr-2">
-                {label}
-            </span>
-        </div>
-    </button>
-    :<button class="pr-5 pl-5 pt-3 pb-3 bg-white  text-lg min-w-full">
-        <div class="flex flex-row items-center">
-            {icon}
-            <span class="pl-2 pr-2">
-                {label}
-            </span>
-        </div>
-    </button>
+	return (
+		<button
+			className={`${
+				featured ? 'bg-green' : ''
+			} px-5 py-3 rounded-lg text-lg w-full flex items-center justify-start ${className}`}
+		>
+			{icon && <Icon size={24} />}
+			<span
+				className={`${
+					featured ? 'font-medium' : 'font-semibold'
+				} ml-2 text-black`}
+			>
+				{label}
+			</span>
+		</button>
+	)
 }
