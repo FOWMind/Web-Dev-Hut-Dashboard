@@ -4,56 +4,65 @@
   "info": {
     "singularName": "course",
     "pluralName": "courses",
-    "displayName": "Course"
+    "displayName": "Course",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
   },
   "pluginOptions": {},
   "attributes": {
-    "name": {
-      "type": "string"
+    "title": {
+      "pluginOptions": {},
+      "type": "string",
+      "required": true,
+      "minLength": 3,
+      "maxLength": 100
     },
     "description": {
-      "type": "text"
+      "pluginOptions": {},
+      "type": "text",
+      "required": true,
+      "minLength": 10,
+      "maxLength": 1000
     },
-    "banner": {
-      "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
-      ],
+    "thumbnail": {
       "type": "media",
-      "multiple": false
-    },
-    "lessons": {
-      "type": "enumeration",
-      "enum": [
-        "type",
-        "ref"
-      ]
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ],
+      "pluginOptions": {}
     },
     "categories": {
-      "type": "enumeration",
-      "enum": [
-        "String"
-      ]
+      "pluginOptions": {},
+      "type": "customField",
+      "required": true,
+      "options": [
+        "Desarrollo Web",
+        "Frontend",
+        "Backend"
+      ],
+      "customField": "plugin::multi-select.multi-select"
     },
     "technologies": {
-      "type": "enumeration",
-      "enum": [
-        "String"
-      ]
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::technology.technology"
     },
     "identifier": {
-      "type": "string"
+      "pluginOptions": {},
+      "type": "string",
+      "minLength": 3,
+      "maxLength": 200,
+      "required": true,
+      "unique": true
     },
-    "created": {
-      "type": "datetime"
-    },
-    "edited": {
-      "type": "datetime"
+    "lessons": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::lesson.lesson"
     }
   }
 }

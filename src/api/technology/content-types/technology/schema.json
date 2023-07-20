@@ -4,7 +4,8 @@
   "info": {
     "singularName": "technology",
     "pluralName": "technologies",
-    "displayName": "Technology"
+    "displayName": "Technology",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -12,25 +13,59 @@
   "pluginOptions": {},
   "attributes": {
     "name": {
-      "type": "string"
+      "pluginOptions": {},
+      "type": "string",
+      "required": true,
+      "minLength": 3,
+      "maxLength": 100
     },
     "description": {
-      "type": "text"
-    },
-    "categories": {
-      "type": "enumeration",
-      "enum": [
-        "String"
-      ]
+      "pluginOptions": {},
+      "type": "text",
+      "minLength": 10,
+      "maxLength": 1000
     },
     "identifier": {
-      "type": "string"
+      "pluginOptions": {},
+      "type": "string",
+      "required": true,
+      "minLength": 3,
+      "maxLength": 200,
+      "unique": true
     },
-    "created": {
-      "type": "datetime"
+    "categories": {
+      "pluginOptions": {},
+      "type": "customField",
+      "options": [
+        "Lenguajes de programación",
+        "Lenguajes de estilo",
+        "Lenguajes de marcado",
+        "Editores de código",
+        "Código abierto",
+        "Otros"
+      ],
+      "required": true,
+      "customField": "plugin::multi-select.multi-select"
     },
-    "edited": {
-      "type": "datetime"
+    "areas": {
+      "pluginOptions": {},
+      "type": "customField",
+      "options": [
+        "Frontend",
+        "Backend",
+        "Otros recursos"
+      ],
+      "required": true,
+      "customField": "plugin::multi-select.multi-select"
+    },
+    "logo": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ],
+      "pluginOptions": {}
     }
   }
 }
