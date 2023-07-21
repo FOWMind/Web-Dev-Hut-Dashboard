@@ -14,15 +14,14 @@ module.exports = createCoreController("api::lesson.lesson", ({ strapi }) => ({
 
     const lesson = await strapi.service("api::lesson.lesson").findOne(id, {
       populate: {
-        course: true,
-        // course: {
-        //   fields: ["identifier"],
-        // },
+        course: {
+          fields: ["identifier"],
+        },
       },
       ...sanitizedQueryParams,
     });
 
-    if (lesson.course) {
+    if (lesson?.course) {
       const lessonContent = await strapi
         .service("api::lesson.lesson")
         .lessonContent(`${lesson.course.identifier}/${lesson.identifier}.md`);
@@ -34,15 +33,23 @@ module.exports = createCoreController("api::lesson.lesson", ({ strapi }) => ({
   },
   async findOneByIdentifier(ctx, next) {
     const { identifier } = ctx.params;
+    const sanitizedQueryParams = await this.sanitizeQuery(ctx);
 
     const lesson = await strapi.db.query("api::lesson.lesson").findOne({
-      where: { identifier },
-      populate: {
-        course: true,
+      where: {
+        identifier: {
+          $eqi: identifier,
+        },
       },
+      populate: {
+        course: {
+          fields: ["identifier"],
+        },
+      },
+      ...sanitizedQueryParams,
     });
 
-    if (lesson.course) {
+    if (lesson?.course) {
       const lessonContent = await strapi
         .service("api::lesson.lesson")
         .lessonContent(`${lesson.course.identifier}/${lesson.identifier}.md`);
@@ -51,5 +58,28 @@ module.exports = createCoreController("api::lesson.lesson", ({ strapi }) => ({
 
     const sanitizedLesson = await this.sanitizeOutput(lesson, ctx);
     return this.transformResponse(sanitizedLesson);
+  },
+  async findByCourseIdentifier(ctx, next) {
+    const { courseIdentifier } = ctx.params;
+    const sanitizedQueryParams = await this.sanitizeQuery(ctx);
+
+    const lessons = await strapi.service("api::lesson.lesson").find({
+      populate: {
+        course: {
+          fields: ["identifier"],
+        },
+      },
+      filters: {
+        course: {
+          identifier: {
+            $eqi: courseIdentifier,
+          },
+        },
+      },
+      ...sanitizedQueryParams,
+    });
+
+    const sanitizedLessons = await this.sanitizeOutput(lessons, ctx);
+    return this.transformResponse(sanitizedLessons);
   },
 }));
