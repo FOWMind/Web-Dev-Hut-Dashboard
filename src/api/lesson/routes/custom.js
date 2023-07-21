@@ -14,5 +14,10 @@ module.exports = {
       path: "/lessons/identifier/:identifier",
       handler: "lesson.findOneByIdentifier",
     },
+    {
+      method: "GET",
+      path: "/lessons/course/:courseIdentifier",
+      handler: "lesson.findByCourseIdentifier",
+    },
   ],
 };
