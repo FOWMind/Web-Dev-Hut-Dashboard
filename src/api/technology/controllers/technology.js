@@ -31,5 +31,26 @@ module.exports = createCoreController(
       const sanitizedTechnology = await this.sanitizeOutput(technology, ctx);
       return this.transformResponse(sanitizedTechnology);
     },
+    async findByArea(ctx, next) {
+      const { area } = ctx.params;
+      const sanitizedQueryParams = await this.sanitizeQuery(ctx);
+
+      const technologies = await strapi
+        .service("api::technology.technology")
+        .find({
+          filters: {
+            areas: {
+              $containsi: area,
+            },
+          },
+          ...sanitizedQueryParams,
+        });
+
+      const sanitizedTechnologies = await this.sanitizeOutput(
+        technologies,
+        ctx
+      );
+      return this.transformResponse(sanitizedTechnologies);
+    },
   })
 );
