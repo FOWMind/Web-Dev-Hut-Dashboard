@@ -42,8 +42,11 @@ module.exports = createCoreController("api::course.course", ({ strapi }) => ({
         },
       },
       populate: {
+        lessons: {
+          fields: ["title", "identifier"],
+        },
         technologies: {
-          fields: ["identifier"],
+          fields: ["name", "identifier"],
         },
       },
       ...sanitizedQueryParams,
