@@ -19,6 +19,13 @@
       "minLength": 3,
       "maxLength": 100
     },
+    "identifier": {
+      "type": "uid",
+      "targetField": "title",
+      "required": true,
+      "minLength": 3,
+      "maxLength": 200
+    },
     "description": {
       "pluginOptions": {},
       "type": "text",
@@ -30,34 +37,20 @@
       "type": "media",
       "multiple": false,
       "required": true,
-      "allowedTypes": [
-        "images"
-      ],
+      "allowedTypes": ["images"],
       "pluginOptions": {}
     },
     "categories": {
       "pluginOptions": {},
       "type": "customField",
       "required": true,
-      "options": [
-        "Desarrollo Web",
-        "Frontend",
-        "Backend"
-      ],
+      "options": ["Desarrollo Web", "Frontend", "Backend"],
       "customField": "plugin::multi-select.multi-select"
     },
     "technologies": {
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::technology.technology"
-    },
-    "identifier": {
-      "pluginOptions": {},
-      "type": "string",
-      "minLength": 3,
-      "maxLength": 200,
-      "required": true,
-      "unique": true
     },
     "lessons": {
       "type": "relation",

@@ -12,24 +12,24 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "name": {
+    "title": {
       "type": "string",
       "required": true,
       "minLength": 3,
       "maxLength": 100
+    },
+    "identifier": {
+      "type": "uid",
+      "targetField": "title",
+      "required": true,
+      "minLength": 3,
+      "maxLength": 200
     },
     "description": {
       "type": "text",
       "minLength": 10,
       "maxLength": 1000,
       "required": false
-    },
-    "identifier": {
-      "type": "string",
-      "required": true,
-      "unique": true,
-      "minLength": 3,
-      "maxLength": 200
     },
     "course": {
       "type": "relation",

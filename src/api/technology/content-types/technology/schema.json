@@ -19,19 +19,18 @@
       "minLength": 3,
       "maxLength": 100
     },
+    "identifier": {
+      "type": "uid",
+      "targetField": "name",
+      "minLength": 3,
+      "maxLength": 200,
+      "required": true
+    },
     "description": {
       "pluginOptions": {},
       "type": "text",
       "minLength": 10,
       "maxLength": 1000
-    },
-    "identifier": {
-      "pluginOptions": {},
-      "type": "string",
-      "required": true,
-      "minLength": 3,
-      "maxLength": 200,
-      "unique": true
     },
     "categories": {
       "pluginOptions": {},
@@ -50,11 +49,7 @@
     "areas": {
       "pluginOptions": {},
       "type": "customField",
-      "options": [
-        "Frontend",
-        "Backend",
-        "Otros recursos"
-      ],
+      "options": ["Frontend", "Backend", "Otros recursos"],
       "required": true,
       "customField": "plugin::multi-select.multi-select"
     },
@@ -62,9 +57,7 @@
       "type": "media",
       "multiple": false,
       "required": false,
-      "allowedTypes": [
-        "images"
-      ],
+      "allowedTypes": ["images"],
       "pluginOptions": {}
     }
   }
