@@ -19,6 +19,7 @@ module.exports = createCoreController("api::course.course", ({ strapi }) => ({
         },
       },
       populate: {
+        thumbnail: true,
         lessons: {
           fields: ["title", "identifier"],
         },
@@ -42,6 +43,7 @@ module.exports = createCoreController("api::course.course", ({ strapi }) => ({
         },
       },
       populate: {
+        thumbnail: true,
         lessons: {
           fields: ["title", "identifier"],
         },
