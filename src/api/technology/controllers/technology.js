@@ -37,7 +37,7 @@ module.exports = createCoreController(
 
       const technologies = await strapi.db
         .query("api::technology.technology")
-        .find({
+        .findMany({
           where: {
             areas: {
               $containsi: area,
