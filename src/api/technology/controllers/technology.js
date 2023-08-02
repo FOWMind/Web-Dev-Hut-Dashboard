@@ -35,13 +35,16 @@ module.exports = createCoreController(
       const { area } = ctx.params;
       const sanitizedQueryParams = await this.sanitizeQuery(ctx);
 
-      const technologies = await strapi
-        .service("api::technology.technology")
+      const technologies = await strapi.db
+        .query("api::technology.technology")
         .find({
-          filters: {
+          where: {
             areas: {
               $containsi: area,
             },
+          },
+          populate: {
+            logo: true,
           },
           ...sanitizedQueryParams,
         });
